@@ -19,6 +19,9 @@ import logging
 import os
 import random
 import uuid
+
+import time # roma
+
 from copy import deepcopy
 from dataclasses import asdict, dataclass
 from enum import Enum
@@ -30,6 +33,7 @@ from PIL import Image
 
 from .tools import Tool
 from .utils import _is_package_available, encode_image_base64, make_image_url
+
 
 
 if TYPE_CHECKING:
