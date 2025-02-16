@@ -485,8 +485,21 @@ class HfApiModel(Model):
                     return parse_tool_args_if_needed(message)
                 return message
             except:
-                print("Ошибка нейросети, ждем 3 минуты..")
-                time.sleep(180)
+                print("Ошибка нейросети, режем соощения...")
+
+                messages = messages[len(messages) // 4:] if messages else []
+                
+                completion_kwargs = self._prepare_completion_kwargs(
+                    messages=messages,
+                    stop_sequences=stop_sequences,
+                    grammar=grammar,
+                    tools_to_call_from=tools_to_call_from,
+                    convert_images_to_image_urls=True,
+                    custom_role_conversions=self.custom_role_conversions,
+                    **kwargs,
+                )
+                
+                time.sleep(70)
 
 
 class MLXModel(Model):
