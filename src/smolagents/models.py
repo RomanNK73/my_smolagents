@@ -454,14 +454,35 @@ class HfApiModel(Model):
             custom_role_conversions=self.custom_role_conversions,
             **kwargs,
         )
-        response = self.client.chat_completion(**completion_kwargs)
 
-        self.last_input_token_count = response.usage.prompt_tokens
-        self.last_output_token_count = response.usage.completion_tokens
-        message = ChatMessage.from_hf_api(response.choices[0].message, raw=response)
-        if tools_to_call_from is not None:
-            return parse_tool_args_if_needed(message)
-        return message
+        response = None
+
+        # original
+        # response = self.client.chat_completion(**completion_kwargs)
+        # self.last_input_token_count = response.usage.prompt_tokens
+        # self.last_output_token_count = response.usage.completion_tokens
+        # message = ChatMessage.from_hf_api(response.choices[0].message, raw=response)
+        # if tools_to_call_from is not None:
+        #     return parse_tool_args_if_needed(message)
+        # return message
+
+#roma
+        message = None
+        got_resp = False
+        while not got_resp:
+            try:
+                print("ЗАПРОС К НЕЙРОСЕТИ..")
+                response = self.client.chat_completion(**completion_kwargs)
+                self.last_input_token_count = response.usage.prompt_tokens
+                self.last_output_token_count = response.usage.completion_tokens
+                message = ChatMessage.from_hf_api(response.choices[0].message, raw=response)
+                got_resp = True
+                if tools_to_call_from is not None:
+                    return parse_tool_args_if_needed(message)
+                return message
+            except:
+                print("Ошибка нейросети, ждем 3 минуты..")
+                time.sleep(180)
 
 
 class MLXModel(Model):
