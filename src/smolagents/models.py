@@ -484,8 +484,8 @@ class HfApiModel(Model):
                 if tools_to_call_from is not None:
                     return parse_tool_args_if_needed(message)
                 return message
-            except:
-                print("Ошибка нейросети, режем соощения...")
+            except Exception as e:
+                print("Ошибка нейросети:", e, "/nРежем соощения...")
 
                 messages = messages[len(messages) // 4:] if messages else []
                 
@@ -499,7 +499,7 @@ class HfApiModel(Model):
                     **kwargs,
                 )
                 
-                time.sleep(70)
+                time.sleep(10)
 
 
 class MLXModel(Model):
