@@ -201,8 +201,8 @@ system_prompt: |-
     fig.update_layout(title=r'Graph of $\sin(x^3)$',                                                                 
                         xaxis_title='x',                                                                               
                         yaxis_title='sin(x^3)',                                                                        
-                        xaxis=dict(ticks="outside", tickwidth=2, tickcolor='black', showgrid=True),                    
-                        yaxis=dict(ticks="outside", tickwidth=2, tickcolor='black', showgrid=True),                    
+                        xaxis=dict(ticks="outside", tickwidth=2, tickcolor='black', showgrid=True, zeroline=True, zerolinewidth=2, zerolinecolor='black'),                    
+                        yaxis=dict(ticks="outside", tickwidth=2, tickcolor='black', showgrid=True, zeroline=True, zerolinewidth=2, zerolinecolor='black'),                    
                         plot_bgcolor='white')                                                                          
                                                                                                                        
     # Show the figure                                                                                                
