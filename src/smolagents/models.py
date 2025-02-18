@@ -496,7 +496,7 @@ class HfApiModel(Model):
                     return parse_tool_args_if_needed(message)
                 return message
             except Exception as e:
-                print("Ошибка нейросети:", e, "/nРежем соощения...")
+                print("Ошибка нейросети:\n\n", e, "\n\nРежем соощения...")
 
                 messages = messages[len(messages) // 4:] if messages else []
                 
