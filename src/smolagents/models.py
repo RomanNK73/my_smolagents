@@ -21,7 +21,7 @@ import random
 import uuid
 
 #roma
-import keyboard
+#import keyboard
 import sys
 #!roma
 
@@ -479,13 +479,13 @@ class HfApiModel(Model):
         message = None
         got_resp = False
         cnt = 0
-        while not got_resp or cnt < 10:
+        while not got_resp and cnt < 10:
             try:
                 cnt += 1
                 print(f"ЗАПРОС К НЕЙРОСЕТИ ({cnt})..")
 
-                if keyboard.is_pressed('ctrl+shift+s'):
-                        sys.exit('Остановлено пользователем')
+                # if keyboard.is_pressed('ctrl+shift+s'):
+                #         sys.exit('Остановлено пользователем')
                 
                 response = self.client.chat_completion(**completion_kwargs)
                 self.last_input_token_count = response.usage.prompt_tokens
@@ -496,7 +496,7 @@ class HfApiModel(Model):
                     return parse_tool_args_if_needed(message)
                 return message
             except Exception as e:
-                print("Ошибка нейросети:\n\n", e, "\n\nРежем соощения...")
+                print(f"Ошибка нейросети:\n\n {e}\n\nРежем соощения...")
 
                 messages = messages[len(messages) // 4:] if messages else []
                 
