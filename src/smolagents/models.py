@@ -20,6 +20,11 @@ import os
 import random
 import uuid
 
+#roma
+import keyboard
+import sys
+#!roma
+
 import time # roma
 
 from copy import deepcopy
@@ -477,7 +482,7 @@ class HfApiModel(Model):
         while not got_resp or cnt < 10:
             try:
                 cnt += 1
-                print("ЗАПРОС К НЕЙРОСЕТИ ({cnt})..")
+                print(f"ЗАПРОС К НЕЙРОСЕТИ ({cnt})..")
 
                 if keyboard.is_pressed('ctrl+shift+s'):
                         sys.exit('Остановлено пользователем')
