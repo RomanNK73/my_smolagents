@@ -477,7 +477,7 @@ class HfApiModel(Model):
         while not got_resp or cnt < 10:
             try:
                 cnt += 1
-                print("ЗАПРОС К НЕЙРОСЕТИ..")
+                print("ЗАПРОС К НЕЙРОСЕТИ ({cnt})..")
 
                 if keyboard.is_pressed('ctrl+shift+s'):
                         sys.exit('Остановлено пользователем')
