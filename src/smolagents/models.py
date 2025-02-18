@@ -473,8 +473,10 @@ class HfApiModel(Model):
 #roma
         message = None
         got_resp = False
-        while not got_resp:
+        cnt = 0
+        while not got_resp or cnt < 10:
             try:
+                cnt += 1
                 print("ЗАПРОС К НЕЙРОСЕТИ..")
                 response = self.client.chat_completion(**completion_kwargs)
                 self.last_input_token_count = response.usage.prompt_tokens
@@ -499,7 +501,9 @@ class HfApiModel(Model):
                     **kwargs,
                 )
                 
-                time.sleep(10)
+                time.sleep(5)
+
+        return "Error getting request from neural network!"
 
 
 class MLXModel(Model):
