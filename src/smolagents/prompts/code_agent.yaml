@@ -208,6 +208,7 @@ system_prompt: |-
     # Show the figure                                                                                                
     fig.show()    
     "
+    Important!!! In previous example do not forget to show gragp to user by fig.show() command!!!  
 
 
   
