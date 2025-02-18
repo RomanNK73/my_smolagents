@@ -23,6 +23,7 @@ import uuid
 #roma
 #import keyboard
 import sys
+from termcolor import colored
 #!roma
 
 import time # roma
@@ -482,7 +483,8 @@ class HfApiModel(Model):
         while not got_resp and cnt < 10:
             try:
                 cnt += 1
-                print(f"ЗАПРОС К НЕЙРОСЕТИ ({cnt})..")
+                #print(f"ЗАПРОС К НЕЙРОСЕТИ ({cnt})..")
+                print(colored(f"ЗАПРОС К НЕЙРОСЕТИ ({cnt})..", 'cyan', 'on_yellow'))
 
                 # if keyboard.is_pressed('ctrl+shift+s'):
                 #         sys.exit('Остановлено пользователем')
@@ -496,8 +498,9 @@ class HfApiModel(Model):
                     return parse_tool_args_if_needed(message)
                 return message
             except Exception as e:
-                print(f"Ошибка нейросети:\n\n {e}\n\nРежем соощения...")
-
+                #print(f"Ошибка нейросети:\n\n {e}\n\nРежем соощения...")
+                print(colored("Ошибка нейросети:",'red','on_yellow'),f"\n\n {e}\n\n",colored("Режем соощения...",'red','on_yellow'))
+                
                 messages = messages[len(messages) // 4:] if messages else []
                 
                 completion_kwargs = self._prepare_completion_kwargs(
