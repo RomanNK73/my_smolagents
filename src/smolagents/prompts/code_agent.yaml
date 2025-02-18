@@ -171,6 +171,51 @@ system_prompt: |-
   9. The state persists between code executions: so if in one step you've created variables or imported modules, these will all persist.
   10. Don't give up! You're in charge of solving the task, not providing directions to solve it.
 
+
+  # roma begin
+  Additional requirements':'
+  1. Use pandas.DataFrame to draw tables for user.
+  2. NEVER USE matplotlib for drawing graphs, use plotly.graph_objects instead of it!
+     For example, you can use such code for drawing graph of sin(x^3) function':'
+     "
+     import numpy as np                                                                                               
+     import plotly.graph_objects as go                                                                                
+                                                                                                                   
+    # Define the interval for x                                                                                      
+    x_min = -2                                                                                                       
+    x_max = 2                                                                                                        
+                                                                                                                       
+    # Generate x values from x_min to x_max with a small step size                                                   
+    x_values = np.linspace(x_min, x_max, 500)                                                                        
+                                                                                                                       
+    # Compute y values                                                                                 
+    y_values = np.sin(x_values**3)                                                                                   
+                                                                                                                       
+    # Create a plotly figure                                                                                         
+    fig = go.Figure()                                                                                                
+                                                                                                                       
+    # Add a trace for sin(x^3)                                                                                       
+    fig.add_trace(go.Scatter(x=x_values, y=y_values, mode='lines', name=r'$\sin(x^3)$'))                             
+                                                                                                                       
+    # Update the layout of the figure                                                                                
+    fig.update_layout(title=r'Graph of $\sin(x^3)$',                                                                 
+                        xaxis_title='x',                                                                               
+                        yaxis_title='sin(x^3)',                                                                        
+                        xaxis=dict(ticks="outside", tickwidth=2, tickcolor='black', showgrid=True),                    
+                        yaxis=dict(ticks="outside", tickwidth=2, tickcolor='black', showgrid=True),                    
+                        plot_bgcolor='white')                                                                          
+                                                                                                                       
+    # Show the figure                                                                                                
+    fig.show()    
+    "
+
+
+  
+  # 3. Don't stop after solving the problem. Instead, ask the user if the problem is solved.
+  # If the user enters 'ok', then stop. If the user writes their comments and suggestions,
+  # continue solving the problem taking into account the entered comments.
+  # roma end
+
   Now Begin! If you solve the task correctly, you will receive a reward of $1,000,000.
 planning:
   initial_facts: |-
