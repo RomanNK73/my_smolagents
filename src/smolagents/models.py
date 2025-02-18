@@ -478,6 +478,10 @@ class HfApiModel(Model):
             try:
                 cnt += 1
                 print("ЗАПРОС К НЕЙРОСЕТИ..")
+
+                if keyboard.is_pressed('ctrl+shift+s'):
+                        sys.exit('Остановлено пользователем')
+                
                 response = self.client.chat_completion(**completion_kwargs)
                 self.last_input_token_count = response.usage.prompt_tokens
                 self.last_output_token_count = response.usage.completion_tokens
