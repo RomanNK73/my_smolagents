@@ -499,7 +499,7 @@ class HfApiModel(Model):
                 return message
             except Exception as e:
                 #print(f"Ошибка нейросети:\n\n {e}\n\nРежем соощения...")
-                print(colored("Ошибка нейросети:",'red','on_yellow'),f"\n\n {e}\n\n",colored("Режем соощения...",'red','on_yellow'))
+                print(colored("Ошибка нейросети:",'red','on_yellow'),f"\n\n {e}\n\n",colored("Режем сообщения агента...",'red','on_yellow'))
                 
                 messages = messages[len(messages) // 4:] if messages else []
                 
