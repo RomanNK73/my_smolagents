@@ -24,6 +24,9 @@ import uuid
 #import keyboard
 import sys
 from termcolor import colored
+from transformers import BitsAndBytesConfig
+
+
 #!roma
 
 import time # roma
