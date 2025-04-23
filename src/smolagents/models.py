@@ -686,6 +686,7 @@ class TransformersModel(Model):
         device_map: Optional[str] = None,
         torch_dtype: Optional[str] = None,
         trust_remote_code: bool = False,
+        quantization_config: Optional[BitsAndBytesConfig] = None,  # Add this roma
         **kwargs,
     ):
         super().__init__(**kwargs)
@@ -716,12 +717,22 @@ class TransformersModel(Model):
         logger.info(f"Using device: {device_map}")
         self._is_vlm = False
         try:
-            self.model = AutoModelForCausalLM.from_pretrained(
-                model_id,
-                device_map=device_map,
-                torch_dtype=torch_dtype,
-                trust_remote_code=trust_remote_code,
-            )
+            if quantization_config: #roma
+                self.model = AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    device_map=device_map,
+                    torch_dtype=torch_dtype,
+                    trust_remote_code=trust_remote_code,
+                    quantization_config=quantization_config,
+                )
+            else:
+               self.model = AutoModelForCausalLM.from_pretrained(
+                   model_id,
+                   device_map=device_map,
+                   torch_dtype=torch_dtype,
+                   trust_remote_code=trust_remote_code,
+               )
+                
             self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         except ValueError as e:
             if "Unrecognized configuration class" in str(e):
