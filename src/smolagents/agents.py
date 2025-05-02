@@ -1241,13 +1241,19 @@ class CodeAgent(MultiStepAgent):
         Returns None if the step is not final.
         """
         memory_messages = self.write_memory_to_messages()
-
+        
         self.input_messages = memory_messages.copy()
 
         # Add new step in logs
         memory_step.model_input_messages = memory_messages.copy()
         try:
             additional_args = {"grammar": self.grammar} if self.grammar is not None else {}
+
+        #roma
+        import torch
+        torch.cuda.emplty_cache()
+
+            
             chat_message: ChatMessage = self.model(
                 self.input_messages,
                 stop_sequences=["<end_code>", "Observation:"],
