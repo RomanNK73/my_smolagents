@@ -1244,7 +1244,7 @@ class CodeAgent(MultiStepAgent):
 
         #roma
         import torch
-        torch.cuda.emplty_cache()
+        torch.cuda.empty_cache()
         
         memory_messages = self.write_memory_to_messages()
         
