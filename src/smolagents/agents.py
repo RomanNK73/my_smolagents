@@ -1249,9 +1249,9 @@ class CodeAgent(MultiStepAgent):
         try:
             additional_args = {"grammar": self.grammar} if self.grammar is not None else {}
 
-        #roma
-        import torch
-        torch.cuda.emplty_cache()
+            #roma
+            import torch
+            torch.cuda.emplty_cache()
 
             
             chat_message: ChatMessage = self.model(
