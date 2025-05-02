@@ -1240,6 +1240,12 @@ class CodeAgent(MultiStepAgent):
         Perform one step in the ReAct framework: the agent thinks, acts, and observes the result.
         Returns None if the step is not final.
         """
+
+
+        #roma
+        import torch
+        torch.cuda.emplty_cache()
+        
         memory_messages = self.write_memory_to_messages()
         
         self.input_messages = memory_messages.copy()
@@ -1249,11 +1255,6 @@ class CodeAgent(MultiStepAgent):
         try:
             additional_args = {"grammar": self.grammar} if self.grammar is not None else {}
 
-            #roma
-            import torch
-            torch.cuda.emplty_cache()
-
-            
             chat_message: ChatMessage = self.model(
                 self.input_messages,
                 stop_sequences=["<end_code>", "Observation:"],
