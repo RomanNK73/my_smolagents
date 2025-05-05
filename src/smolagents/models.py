@@ -833,6 +833,11 @@ class TransformersModel(Model):
         else:
             stopping_criteria = None
 
+
+        #roma !!! дурь на шару!
+        import torch
+        torch.cuda.empty_cache()
+        
         out = self.model.generate(
             **prompt_tensor,
             stopping_criteria=stopping_criteria,
