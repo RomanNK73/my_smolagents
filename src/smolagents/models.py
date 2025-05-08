@@ -700,7 +700,10 @@ class TransformersModel(Model):
         import torch
         from transformers import AutoModelForCausalLM, AutoModelForImageTextToText, AutoProcessor, AutoTokenizer
 
-        default_model_id = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
+        
+        #default_model_id = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
+        #roma
+        default_model_id = "google/gemma-3-4b-it"
         if model_id is None:
             model_id = default_model_id
             logger.warning(f"`model_id`not provided, using this default tokenizer for token counts: '{model_id}'")
