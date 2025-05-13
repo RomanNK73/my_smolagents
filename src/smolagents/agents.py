@@ -481,7 +481,7 @@ You have been provided with these additional arguments, that you can access usin
                         is_first_step=(self.step_number == 1),
                         step=self.step_number,
                     )
-                self.logger.log_rule(f"Step {self.step_number}", level=LogLevel.INFO)
+                self.logger.log_rule(f"Step {self.step_number}  ({type(self).__name__}) ", level=LogLevel.INFO)
 
                 # Run one step!
                 final_answer = self.step(memory_step)
