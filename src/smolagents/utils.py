@@ -151,6 +151,10 @@ def parse_json_blob(json_blob: str) -> Dict[str, str]:
 
 def parse_code_blobs(code_blob: str) -> str:
     """Parses the LLM's output to get any code blob inside. Will return the code directly if it's code."""
+    
+    #roma, криво блядь!!! Из за того, что llm иногда пишет python без кавычек (```), и при этом в конце куска кода они есть почемута
+    code_blob = code_blob.replace("python","```python")
+    
     pattern = r"```(?:py|python)?\n(.*?)\n```"
     matches = re.findall(pattern, code_blob, re.DOTALL)
     if len(matches) == 0:
